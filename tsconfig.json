@@ -14,13 +14,17 @@
       // import * as React from 'react'
       // можно написать такой 
       // import REact from 'react'
-      "esModuleInterop": true
+      "esModuleInterop": true,
       // esModuleInterop позволяет работать с пакетами, которые используют
       // common js как с обычными пакетами с помощью import (require() module.export) = common js
       // import Moment from 'moment';
       // без флага esModuleInterop результат undefined
       // console.log(Moment)
       // с флагом результат [object Object]
+      "baseUrl": ".",
+      "paths": {
+        "@/*": ["./src/*"]
+      }
     },
     "ts-node": {
       "compilerOptions": {
