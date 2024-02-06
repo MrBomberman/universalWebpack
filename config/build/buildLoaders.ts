@@ -43,7 +43,11 @@ export function buildLoaders(options: BuildOptions) : ModuleOptions['rules'] {
           {
             loader: 'ts-loader',
             options: {
-              transpileOnly: true
+              transpileOnly: true,
+              getCustomTransformers: () => ({
+                before: [isDev && ReactRefreshTypeScript()].filter(Boolean), 
+                // для правильной работы hmr
+              }),
             }
           }
         ]
@@ -81,4 +85,8 @@ export function buildLoaders(options: BuildOptions) : ModuleOptions['rules'] {
         assetLoader,
         svgrLoader
     ]
+}
+
+function ReactRefreshTypeScript() {
+    throw new Error("Function not implemented.");
 }

@@ -8,9 +8,9 @@ import AppImage from '@/assets/app-image.svg';
 
 // TREE SHAKING
 // если код не используется - в итоговую сборку он не попадет
-function TODO(a: number) {
-    console.log("TODOFUNCTION")
-}
+// function TODO(a: number) {
+//     console.log("TODOFUNCTION")
+// }
 
 export const App = () => {
 
@@ -18,15 +18,15 @@ export const App = () => {
 
     const increment = () => setCount(prev => prev + 1)
 
-    TODO('23823')
+    // TODO('23823')
 
-    if (__PLATFORM__ === 'desktop') {
-        return <div>ISDESKTOPPLATFORM</div>
-    }
+    // if (__PLATFORM__ === 'desktop') {
+    //     return <div>ISDESKTOPPLATFORM</div>
+    // }
 
-    if (__PLATFORM__ === 'mobile') {
-        return <div>ISMOBILEPLATFORM</div>
-    }
+    // if (__PLATFORM__ === 'mobile') {
+    //     return <div>ISMOBILEPLATFORM</div>
+    // }
     return (
         <div>
             <h1>PLATFORM={__PLATFORM__}</h1>
