@@ -4,12 +4,13 @@ import webpack from 'webpack';
 import type { Configuration as DevServerConfiguration } from "webpack-dev-server";
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { buildWebpack } from './config/build/buildWebpack';
-import { BuildMode, BuildPaths } from './config/build/types/types';
+import { BuildMode, BuildPaths, BuildPlatform } from './config/build/types/types';
 
 interface EnvVariables {
     mode: BuildMode,
     port: number,
     analyzer?: boolean;
+    platform?: BuildPlatform;
 }
 
 export default (env: EnvVariables) => {
@@ -23,7 +24,8 @@ export default (env: EnvVariables) => {
         port: env.port ?? 3000,
         mode: env.mode ?? 'development',
         paths,
-        analyzer: env.analyzer
+        analyzer: env.analyzer,
+        platform: env.platform ?? 'desktop'
     })
     return config
 };
