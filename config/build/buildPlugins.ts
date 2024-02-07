@@ -7,6 +7,7 @@ import path from "path";
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
+import CopyPlugin from "copy-webpack-plugin";
 
 export function buildPlugins({mode, paths, analyzer, platform}: BuildOptions) : Configuration['plugins'] {
     const isDev = mode === 'development';
@@ -14,7 +15,8 @@ export function buildPlugins({mode, paths, analyzer, platform}: BuildOptions) : 
 
     const plugins: Configuration['plugins'] = [
          // подставляет скрипты в наш index.html
-         new HtmlWebpackPlugin({template: paths.html}), // template - ссылка html файла, который будет использоваться в качестве шаблона
+         new HtmlWebpackPlugin({template: paths.html,
+         favicon: path.resolve(paths.public, 'favicon.ico')}), // template - ссылка html файла, который будет использоваться в качестве шаблона
          new DefinePlugin({
             __PLATFORM__ : JSON.stringify(platform)
          }),
@@ -31,6 +33,11 @@ export function buildPlugins({mode, paths, analyzer, platform}: BuildOptions) : 
         plugins.push(new MiniCssExtractPlugin({
             filename: 'css/[name].[contenthash:8].css',
             chunkFilename: 'css/[name].[contenthash:8].css'
+        }))
+        plugins.push(new CopyPlugin({
+            patterns: [
+              { from: path.resolve(paths.public, 'locales'), to: path.resolve(paths.output, 'locales') },
+            ],
         }))
     }
 

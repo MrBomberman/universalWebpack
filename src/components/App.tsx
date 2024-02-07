@@ -8,15 +8,22 @@ import AppImage from '@/assets/app-image.svg';
 
 // TREE SHAKING
 // если код не используется - в итоговую сборку он не попадет
-// function TODO(a: number) {
-//     console.log("TODOFUNCTION")
-// }
+function TODO() {
+    TODO2()
+}
+
+function TODO2() {
+    throw new Error()
+}
 
 export const App = () => {
 
     const [count, setCount] = useState(0);
 
-    const increment = () => setCount(prev => prev + 1)
+    const increment = () => {
+        // TODO()
+        setCount(prev => prev + 1)
+    }
 
     // TODO('23823')
 
@@ -28,7 +35,7 @@ export const App = () => {
     //     return <div>ISMOBILEPLATFORM</div>
     // }
     return (
-        <div>
+        <div data-testid={'App.DataTestId'}>
             <h1>PLATFORM={__PLATFORM__}</h1>
             <div>
                 <img width={100} height={100} src={avatarPng} alt="" />
