@@ -1,5 +1,6 @@
 import { ModuleOptions } from "webpack";
 import { BuildOptions } from "./types/types";
+import ReactRefreshTypeScript from "react-refresh-typescript";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import { buildBabelLoaders } from "./babel/buildBabelLoaders";
 
@@ -91,6 +92,3 @@ export function buildLoaders(options: BuildOptions) : ModuleOptions['rules'] {
     ]
 }
 
-function ReactRefreshTypeScript() {
-    throw new Error("Function not implemented.");
-}
